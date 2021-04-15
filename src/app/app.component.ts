@@ -18,7 +18,15 @@ export class AppComponent implements OnInit {
 
   initializeForm(): void {
     this.volunteerForm = this.fb.group({
-      
-    })
+      name: 'Name here',
+      phoneNumber: '',
+      preferredLocation: '',
+      animals: this.fb.group({
+        dogs: false,
+        cats: false,
+        reptiles: false
+      }),
+      references: this.fb.array([this.fb.control('')])
+    });
   }
 }
