@@ -1,5 +1,5 @@
 <h1>Animal Shelter Volunteer Form</h1>
-<form [formGroup="volunteerForm"] (ngSubmit)="onSubmit()">
+<form [formGroup]="volunteerForm"] (ngSubmit)="onSubmit()">
   <h2>Personal Information</h2>
 	<label>
     First Name:
@@ -10,9 +10,9 @@
     <input type="text" formControlName="phoneNumber" placeholder="required">
   </label>
   <label>Select Preferred Location:</label>
-  <select>
+  <select ormControlName="preferredLocation" (change)="selectLocation($event)">
     <option *ngFor="let loc of locations" [ngValue]="loc">{{loc}}</option>
-  </select formControlName="preferredLocation" (change)="selectLocation($event)">
+  </select>
   <h2>Please select what animals you're comfortable working with, if any:</h2>
   <div formGroupName="animals" class="grouping">
     <label>Dogs

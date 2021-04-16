@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms'
+import { FormGroup, FormBuilder, FormArray } from '@angular/forms'
 
 @Component({
   selector: 'my-app',
@@ -28,5 +28,27 @@ export class AppComponent implements OnInit {
       }),
       references: this.fb.array([this.fb.control('')])
     });
+  }
+
+  onSubmit(): void {
+    console.log(this.volunteerForm);
+  }
+
+  selectLocation(event): void {
+    this.volunteerForm.patchValue({
+      preferredLocation: event.target.value
+    });
+  }
+
+  addEmail(): void {
+    this.references.push(this.fb.control(''));
+  }
+
+  removeEmail(index: number): void {
+    this.references.removeAt(index);
+  }
+
+  get references(): FormArray {
+    return this.volunteerForm.get('references') as FormArray;
   }
 }
